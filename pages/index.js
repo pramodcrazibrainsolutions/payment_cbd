@@ -16,17 +16,15 @@ export default function Home() {
       timeStamp: timestamp,
       product_id: "CORP",
     };
-    axios
-      .post("/api/payment-request", encrypt(JSON.stringify(data)))
-      .then((response) => {
-        router.push({
-          pathname: `${response.data.redirection_Url}`,
-          query: {
-            data: `${encrypt(JSON.stringify(response.data.queryString))}`,
-            source: `${encrypt("WEB")}`,
-          },
-        });
+    axios.post("/api/payment-request", data).then((response) => {
+      router.push({
+        pathname: `${response.data.redirection_Url}`,
+        query: {
+          data: `${encrypt(JSON.stringify(response.data.queryString))}`,
+          source: `${encrypt("WEB")}`,
+        },
       });
+    });
   };
   return (
     <>

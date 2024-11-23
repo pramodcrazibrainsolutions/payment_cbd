@@ -4,7 +4,7 @@ import { decrypt, encrypt } from "../../helper/encrypt-decrypt";
 import { generateHash } from "../../helper/generateHash";
 
 export default async function (req, res) {
-  let reqData = JSON.parse(decrypt(req.body));
+  let reqData = req.body;
   let hash = generateHash(
     process.env.NEXT_PUBLIC_PP_VERSION,
     reqData.txnType,
