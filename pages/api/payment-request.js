@@ -1,10 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { encrypt } from "../../helper/encrypt-decrypt";
+import { decrypt, encrypt } from "../../helper/encrypt-decrypt";
 import { generateHash } from "../../helper/generateHash";
 
 export default async function (req, res) {
-  let reqData = JSON.parse;
+  let reqData = JSON.parse(decrypt(req.body));
   let hash = generateHash(
     process.env.NEXT_PUBLIC_PP_VERSION,
     reqData.txnType,
